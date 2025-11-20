@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${caveat.className} antialiased`}>
+      <body className={`${caveat.className} antialiased min-h-dvh`}>
         <Navbar />
         {children}
       </body>
