@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { userSchemaProps } from "@/types/user-schema.types";
+import { hash } from "bcryptjs";
 
 const UserSchema: Schema<userSchemaProps> = new Schema(
   {
@@ -22,6 +23,13 @@ const UserSchema: Schema<userSchemaProps> = new Schema(
   },
   { timestamps: true }
 );
+
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  const hashed_pass = await hash(this.password, 10);
+  this.password = hashed_pass;
+  next();
+});
 
 const User =
   (mongoose.models?.User as mongoose.Model<userSchemaProps>) ||
