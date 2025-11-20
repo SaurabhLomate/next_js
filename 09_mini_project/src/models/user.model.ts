@@ -3,7 +3,7 @@ import { userSchemaProps } from "@/types/user-schema.types";
 
 const UserSchema: Schema<userSchemaProps> = new Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
     },
