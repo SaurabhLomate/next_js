@@ -23,5 +23,8 @@ const UserSchema: Schema<userSchemaProps> = new Schema(
   { timestamps: true }
 );
 
-export default (mongoose.models?.user as mongoose.Model<userSchemaProps>) ||
+const User =
+  (mongoose.models?.User as mongoose.Model<userSchemaProps>) ||
   mongoose.model<userSchemaProps>("User", UserSchema);
+
+export default User;

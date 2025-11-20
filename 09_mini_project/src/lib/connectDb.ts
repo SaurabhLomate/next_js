@@ -13,12 +13,15 @@ async function connectDb(): Promise<Mongoose> {
   }
   try {
     if (!cached.promise) {
-      cached.promise = connect(config.MONGO_URI!, { dbName: config.DB_NAME });
+      console.log("trying to connect mongo uri_____");
+      console.log(`${config.MONGO_URI!}/${config.DB_NAME}`);
+      cached.promise = connect(`${config.MONGO_URI!}/${config.DB_NAME}`);
     }
     cached.conn = await cached.promise;
+    console.log("mongodb connected successfully..");
     return cached.conn;
   } catch (error) {
-    throw new Error(error as string);
+    throw new Error(`error ---- ${error}`);
   }
 }
 
